@@ -45,10 +45,478 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "DeleteProductById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/products/5ff9d9a6830a6b05d1f385b5",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"5ff9d9a6830a6b05d1f385b5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateProductSample",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/products",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateProduct",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Test Product\",\n    \"description\": \"Test description\",\n    \"price\": 10,\n    \"category\": \"Electronics\",\n    \"countInStock\": 10,\n    \"image\": \"/images/sample.jpg\",\n    \"brand\": \"Test brand\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/products/60074ade8a78320841336213",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"60074ade8a78320841336213"
+							]
+						}
+					},
+					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
+		},
+		{
+			"name": "Users & Auth",
+			"item": [
+				{
+					"name": "AuthenticateUser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"TOKEN\",pm.response.json().token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin@example.com\",\n    \"password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/users/login",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UserProfile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmZjlkOWE2ODMwYTZiMDVkMWYzODViMiIsImlhdCI6MTYxMDQwNjY1MiwiZXhwIjoxNjE5MDQ2NjUyfQ.KRWve2h-S1oDoCIppjgAeFdXQuSlxkIXAu-F1en5qKE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{URL}}/api/users/profile",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Steve Jobs\",\n    \"email\": \"steve@jobs.com\",\n    \"password\": 123456\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/users",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateUserProfile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"John Doe\",\n    \"email\": \"john@example.com\",\n    \"password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/users/profile",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllUsers(Admin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/users",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteUser(Admin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/users/6000c36faeefd404192d5b78",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"6000c36faeefd404192d5b78"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetUserById(Admin)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{URL}}/api/users/5ff9d9a6830a6b05d1f385b4",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"5ff9d9a6830a6b05d1f385b4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateUserById(Admin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Jane Doe\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/users/5ff9d9a6830a6b05d1f385b4",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"5ff9d9a6830a6b05d1f385b4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "OrderById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/orders/600324ffb3d67213c938f3b7",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								"600324ffb3d67213c938f3b7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetUserOrders",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/users",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }
