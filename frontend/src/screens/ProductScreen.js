@@ -8,6 +8,7 @@ import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
 import Swal from 'sweetalert2'
+import Meta from '../components/Meta'
 
 const ProductScreen = ({ history, match }) => {
 
@@ -70,6 +71,7 @@ const ProductScreen = ({ history, match }) => {
                         :
                         (
                             <>
+                                <Meta title={product.name} />
                                 <Row>
                                     <Col md={6}>
                                         <Image src={product.image} alt={product.name} fluid />
